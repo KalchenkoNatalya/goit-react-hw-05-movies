@@ -9,8 +9,8 @@ class Api {
     #TRENDING_URL = 'https://api.themoviedb.org/3/trending/movie/day';
     #MOVIE_DETAILS='https://api.themoviedb.org/3/movie/movie_id'
 
-async fetchTrendingMovies(page)  {
-    const {data} = await axios.get(`${this.#TRENDING_URL}?page=${page}&api_key=${this.#API_KEY}`);
+async fetchTrendingMovies()  {
+    const {data} = await axios.get(`${this.#TRENDING_URL}?page=1&api_key=${this.#API_KEY}`);
     return data.results
 }
 

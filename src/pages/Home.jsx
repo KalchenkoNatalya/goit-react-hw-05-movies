@@ -6,16 +6,17 @@ import Api from 'services/Api';
 
 const Home = () => {
   const [error, setError] = useState();
-  const [page, setPage] = useState(1);
+ 
   const [trendingArray, setTrendingArray] = useState([])
     useEffect(() => {
       const fetchTrending = async() => {
         try {
           const api = new Api();
-          const responceTrending = await api.fetchTrendingMovies(page);
+          const responceTrending = await api.fetchTrendingMovies();
           setTrendingArray(responceTrending)
           // console.log(trendingMovies)
           console.log(responceTrending)
+          
       
         } catch (newError) {
           setError(newError)
@@ -23,7 +24,7 @@ const Home = () => {
         }
       }
       fetchTrending()
-    }, [page])
+    }, [])
   const onClick  = () => {
     console.log("вибрали фільм")
   }
