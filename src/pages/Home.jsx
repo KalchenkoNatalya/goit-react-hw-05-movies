@@ -25,14 +25,23 @@ const Home = () => {
       }
       fetchTrending()
     }, [])
-  const onClick  = () => {
-    console.log("вибрали фільм")
+  const onClick = (movieId) => {
+    const fetchOneMovie = async() => {
+      try {
+        const api = new Api();
+        const responceDetails= await api.movieDetails(movieId);
+        console.log(responceDetails)
+      } catch (error) {}
+    };
+    fetchOneMovie();
+    console.log('запит деталі')
   }
   return (
      
     <div>
        {error ? (<p>{error.message}</p>) : (<p>"є відповідь"</p> )}
        <TrendingMoviesList responceTrending={trendingArray} onClick={onClick}/>
+       
     </div>
   )
 }

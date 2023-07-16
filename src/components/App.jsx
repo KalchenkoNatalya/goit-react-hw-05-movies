@@ -1,7 +1,8 @@
 import Home from 'pages/Home';
+import MovieDetails from 'pages/MovieDetails';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
-import MovieDetails from './MovieDetails/MovieDetails';
+
 
 const StyledLink = styled(NavLink)`
   color: black;
@@ -16,7 +17,8 @@ const App = () => {
       <nav>
         <StyledLink to="/">Home</StyledLink>
         <StyledLink to="/movies">Movies</StyledLink>
-       
+        
+        
       </nav>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
@@ -26,10 +28,13 @@ const App = () => {
           element={<div>Page of search movies</div>}
         ></Route>
         <Route
-          path="/movies/:id"
+          path="/movies/:movieId/*"
           element={<MovieDetails/>}
         ></Route>
-         
+         <Route
+          path="*"
+          element={<Home/>}
+        ></Route>
        
       </Routes>
     </div>
