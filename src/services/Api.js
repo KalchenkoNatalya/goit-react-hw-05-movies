@@ -7,6 +7,15 @@ class Api {
   // #MOVIE_DETAILS='https://api.themoviedb.org/3/movie/movie_id'
   #MOVIE_DETAILS = 'https://api.themoviedb.org/3/movie/';
 
+  options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1N2NhM2NiZjM4NDk2MGQ2NDEwN2EzYzVkNzAxNTViOCIsInN1YiI6IjY0N2E3OTYyY2FlZjJkMDBkZjg4MGNhZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9FyD_Xuprwhf78eJyu1Ew5c52DJhC0pkIeyoylTof04',
+    },
+  };
+
   async fetchTrendingMovies() {
     const { data } = await axios.get(
       `${this.#TRENDING_URL}?page=1&api_key=${this.#API_KEY}`
@@ -15,35 +24,26 @@ class Api {
   }
 
   async movieDetails(movieId) {
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1N2NhM2NiZjM4NDk2MGQ2NDEwN2EzYzVkNzAxNTViOCIsInN1YiI6IjY0N2E3OTYyY2FlZjJkMDBkZjg4MGNhZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9FyD_Xuprwhf78eJyu1Ew5c52DJhC0pkIeyoylTof04',
-      },
-    };
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}`,
-      options
+      this.options
     );
     return data;
   }
+
   async fetchCast(movieId) {
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1N2NhM2NiZjM4NDk2MGQ2NDEwN2EzYzVkNzAxNTViOCIsInN1YiI6IjY0N2E3OTYyY2FlZjJkMDBkZjg4MGNhZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9FyD_Xuprwhf78eJyu1Ew5c52DJhC0pkIeyoylTof04',
-      },
-    };
     const responceCast = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}/credits`,
-      options
+      `https://api.themoviedb.org/3/movie/${movieId}/credits`,
+      this.options
     );
     return responceCast.data.cast;
   }
 
+  async fetchReviews(movieId) {
+    const responceReviews = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/reviews`, this.options);
+     console.log(responceReviews.data.results)
+    return responceReviews.data.results
+   
+  }
 }
 export default Api;

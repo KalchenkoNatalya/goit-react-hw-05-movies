@@ -1,18 +1,13 @@
-import Cast from 'components/Cast/Cast';
-import Reviews from 'components/Reviews/Reviews';
 import { useEffect, useState } from 'react';
 import { NavLink, Route, Routes, useParams } from 'react-router-dom';
 import Api from 'services/Api';
-
-
-
+import Cast from './Cast';
+import Reviews from './Reviews';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState();
-  const [cast, setCast] = useState();
   const [error, setError] = useState(null);
-
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -37,17 +32,6 @@ const MovieDetails = () => {
   const genresAll = genres ? genres.map(genre => genre.name).join('  ') : '-';
   // console.log(genresAll);
 
-  const onClickCast = async () => {
-    try {
-      const api = new Api();
-      const castInformation = await api.fetchCast(movieId);
-      setCast(castInformation)
-      console.log(cast)
-      
-    } catch (newError) {
-      setError(newError);
-    }
-  }
   return (
     <div>
       {error ? <p>{error.message}</p> : <div> "деталі фільму "</div>}
@@ -73,13 +57,13 @@ const MovieDetails = () => {
         <div>
           <p>Additional information</p>
           <ul>
-            <NavLink to={`/movies/${movieId}/cast`} onClick={onClickCast}>Cast</NavLink>
-            <NavLink to="/movies/:movieId/reviews">Reviews </NavLink>
+            <NavLink to="cast">Cast</NavLink>
+            <NavLink to="reviews">Reviews </NavLink>
           </ul>
 
           <Routes>
-            <Route path={`/movies/${movieId}/cast`} element={<Cast />}></Route>
-            <Route path="/movies/:movieId/reviews" element={<Reviews/>}></Route>
+            <Route path="cast" element={<Cast />}></Route>
+            <Route path="reviews" element={<Reviews />}></Route>
           </Routes>
         </div>
       </div>
