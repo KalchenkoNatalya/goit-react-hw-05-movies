@@ -41,9 +41,15 @@ class Api {
 
   async fetchReviews(movieId) {
     const responceReviews = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/reviews`, this.options);
-     console.log(responceReviews.data.results)
-    return responceReviews.data.results
+
+    return responceReviews.data.results;
    
+  }
+
+  async fetchOnSearchParams(searchQuery) {
+    const responsSearchQuery = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${searchQuery}`, this.options);
+      // console.log(responsSearchQuery.data.results)
+    return responsSearchQuery.data.results;
   }
 }
 export default Api;

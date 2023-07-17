@@ -1,13 +1,24 @@
-import { useEffect, useState } from 'react';
-import { NavLink, Route, Routes, useParams } from 'react-router-dom';
+import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import {
+  NavLink,
+  Route,
+  Routes,
+  useLocation,
+  useParams,
+} from 'react-router-dom';
 import Api from 'services/Api';
-import Cast from './Cast';
-import Reviews from './Reviews';
+// import Cast from './Cast';
+// import Reviews from './Reviews';
+import Loader from 'components/Loader/Loader';
+const Cast = lazy(() => import('./Cast'));
+const Reviews  = lazy(() => import('./Reviews'));
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState();
   const [error, setError] = useState(null);
+  const location = useLocation();
+  const backLink = useRef(location.state?.form ?? '/');
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -15,7 +26,6 @@ const MovieDetails = () => {
         const api = new Api();
         const responceDetails = await api.movieDetails(movieId);
         setMovieDetails(responceDetails);
-        // console.log(movieDetails);
       } catch (newError) {
         setError(newError);
       }
@@ -30,43 +40,49 @@ const MovieDetails = () => {
   const defaultImg =
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
   const genresAll = genres ? genres.map(genre => genre.name).join('  ') : '-';
-  // console.log(genresAll);
+
 
   return (
     <div>
-      {error ? <p>{error.message}</p> : <div> "деталі фільму "</div>}
-      <div>
-        <img
-          src={
-            poster_path
-              ? `https://image.tmdb.org/t/p/original${poster_path}`
-              : defaultImg
-          }
-          width={250}
-          alt="poster"
-        />
-        <p>
-          {title} ({year})
-        </p>
-        <p>User score: {userScore}%</p>
-
-        <p>{'Overview'}</p>
-        <p>{overview}</p>
-        <p>{'Genres'}</p>
-        <p>{genresAll}</p>
+      <NavLink to={backLink.current}>Go back</NavLink>
+      {error ? (
+        <p>{error.message}</p>
+      ) : (
         <div>
-          <p>Additional information</p>
-          <ul>
-            <NavLink to="cast">Cast</NavLink>
-            <NavLink to="reviews">Reviews </NavLink>
-          </ul>
+          <img
+            src={
+              poster_path
+                ? `https://image.tmdb.org/t/p/original${poster_path}`
+                : defaultImg
+            }
+            width={250}
+            alt="poster"
+          />
+          <p>
+            {title} ({year})
+          </p>
+          <p>User score: {userScore}%</p>
 
-          <Routes>
-            <Route path="cast" element={<Cast />}></Route>
-            <Route path="reviews" element={<Reviews />}></Route>
-          </Routes>
+          <p>{'Overview'}</p>
+          <p>{overview}</p>
+          <p>{'Genres'}</p>
+          <p>{genresAll}</p>
+          <div>
+            <p>Additional information</p>
+            <ul>
+              <NavLink to="cast">Cast</NavLink>
+              <NavLink to="reviews">Reviews </NavLink>
+            </ul>
+
+           <Suspense fallback={<Loader/>}>
+              <Routes>
+                <Route path="cast" element={<Cast />}></Route>
+                <Route path="reviews" element={<Reviews />}></Route>
+              </Routes>
+           </Suspense>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

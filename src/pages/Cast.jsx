@@ -6,7 +6,7 @@ const Cast = () => {
   const [cast, setCast] = useState();
   const [error, setError] = useState();
   const { movieId } = useParams();
-  console.log(movieId);
+  // console.log(movieId);
   useEffect(() => {
     if (!movieId) return;
 
@@ -25,7 +25,7 @@ const Cast = () => {
   }, [movieId]);
   const defaultImg =
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
-  console.log(cast);
+  // console.log(cast);
   return (
     <div>
       {error ? (

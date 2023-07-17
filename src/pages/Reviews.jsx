@@ -6,7 +6,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState(null);
   const { movieId } = useParams();
-  console.log(movieId);
+  // console.log(movieId);
   useEffect(() => {
     if (!movieId) return;
 
@@ -23,7 +23,7 @@ const Reviews = () => {
 
     fetchReviewsIformation();
   }, [movieId]);
-  console.log(reviews);
+  // console.log(reviews);
 
   return (
     <div>

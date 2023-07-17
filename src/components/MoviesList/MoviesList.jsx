@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 
-const TrendingMoviesList = ({responceTrending, onClick}) => {
+const MoviesList = ({responceOnFetch, onClick}) => {
 
   return (
     <ul>
-      {responceTrending.map(({ original_title, id }) => (
+      {responceOnFetch.map(({ original_title, id }) => (
         <li key={id} > <NavLink to={`/movies/${id}`} activeclassname="active" onClick={onClick} >
         {original_title}
       </NavLink></li>
@@ -13,4 +13,4 @@ const TrendingMoviesList = ({responceTrending, onClick}) => {
   );
 };
 
-export default TrendingMoviesList;
+export default MoviesList;
