@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/866.15877c9a.chunk.css","mappings":"AAAA,6BACI,eACJ,CAEA,6BAGA,eAAgB,CAFZ,cAAe,CACnB,kBAGA","sources":["pages/Reviews/Reviews.module.css"],"sourcesContent":[".reviews_item {\n    margin-top: 20px;\n}\n\n.reviews_text {\n    margin-top: 5px;\ntext-align: justify;\nline-height: 1.4;\n\n}"],"names":[],"sourceRoot":""}
