@@ -21,8 +21,8 @@ const Search = () => {
         setIsLoading(true);
         const api = new Api();
         const responceFetchQuery = await api.fetchOnSearchParams(searchTerms);
-        // console.log(responceFetchQuery);
-        if (responceFetchQuery.length === []) {
+        console.log(responceFetchQuery);
+        if (responceFetchQuery.length === 0) {
           alert('There are no movies on youe query');
         }
         setMovieDataBySearch(responceFetchQuery);
