@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Api from 'services/Api';
+import css from "./Reviews.module.css"
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -29,9 +30,9 @@ const Reviews = () => {
     <div>
       {error !== null && <p>{error.message}</p>}
       {reviews?.length > 0 ? reviews.map(({ id, author, content }) => (
-        <li key={id}>
-          <h6>{author}</h6>
-          <p>{content}</p>
+        <li key={id} className={css.reviews_item}>
+          <h5>{author}</h5>
+          <p className={css.reviews_text}>{content}</p>
         </li>
       )) : <p>There are no reviews </p>}
     

@@ -6,8 +6,6 @@ const Home = lazy(() => import('pages/Home'));
 const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'));
 const Search = lazy(() => import('pages/Search'));
 
-
-
 const App = () => {
   return (
     <div>
@@ -31,17 +29,19 @@ const App = () => {
       <main>
         <section>
           <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/movies" element={<Search />}></Route>
-            <Route path="/movies/:movieId/*" element={<MovieDetails />}></Route>
-  
-            <Route path="*" element={<Home />}></Route>
-          </Routes>
-        </Suspense>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/movies" element={<Search />}></Route>
+              <Route
+                path="/movies/:movieId/*"
+                element={<MovieDetails />}
+              ></Route>
+
+              <Route path="*" element={<Home />}></Route>
+            </Routes>
+          </Suspense>
         </section>
       </main>
-      
     </div>
   );
 };

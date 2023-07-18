@@ -58,7 +58,6 @@ const Search = () => {
 
 export default Search;
 
-
 //варіант без useSearchParams, витягаєм значення інпуту через onChangeInput
 
 // const Search = () => {

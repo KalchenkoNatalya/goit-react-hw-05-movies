@@ -2,12 +2,12 @@
     padding-top: 20px;
     padding-left: 30px;
     padding-right: 30px;
-
-
 }
 
 .button_back {
     margin-bottom: 20px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     display: block;
     width: 100px;
     height: 20px;
@@ -17,9 +17,77 @@
     text-decoration: none;
     background-color: #a8f3ef;
     color: inherit;
-     font-size: inherit; 
+    font-size: inherit;
 }
 
-.poster_movie{
+.poster_movie {
     border-radius: 10px;
+    margin-right: 20px;
+}
+
+.movie_details_wrap {
+    display: flex;
+}
+
+.movie_deteils_title {
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.movie_deteils_score {
+    margin-bottom: 10px;
+}
+
+.movie_deteils_overview {
+    margin-bottom: 3px;
+}
+
+.movie_deteils_overview_text {
+    margin-bottom: 10px;
+    text-align: justify;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.movie_deteils_genres_wrap {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 20px;
+}
+
+.additional_wrap {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.additional_list {
+    display: flex;
+    gap: 20px;
+    margin-left: 20px;
+}
+
+.additional_link {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 400;
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 150ms;
+    cursor: pointer;
+
+    &.active {
+        color: #1ad5cc;
+    }
+
+    &:hover,
+    &:focus {
+        color: #1ad5cc;
+    }
 }

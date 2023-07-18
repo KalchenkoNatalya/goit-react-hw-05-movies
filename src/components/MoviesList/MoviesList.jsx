@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import css from "./MovieList.module.css"
+import css from './MovieList.module.css';
 
 const MoviesList = ({ responceOnFetch }) => {
   const location = useLocation();
@@ -14,7 +14,6 @@ const MoviesList = ({ responceOnFetch }) => {
             state={{ from: location }}
             // activeclassname="active"
             className={css.movie_list_link}
-
           >
             {original_title}
           </NavLink>

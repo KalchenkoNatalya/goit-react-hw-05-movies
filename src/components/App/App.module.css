@@ -1,34 +1,38 @@
 header {
 	padding-top: 20px;
-    padding-bottom: 20px;
+	padding-bottom: 20px;
 	box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
-    background-color: #d1f2f1;
+	background-color: #d1f2f1;
+}
+
+section {
+	padding: 20px;
 }
 
 .nav_list {
-    display: flex;
-    gap: 20px;
-    list-style: none;
+	display: flex;
+	gap: 20px;
+	padding-left: 20px;
 }
 
 .nav_item {
-    font-size: 20px;
- 
+	font-size: 20px;
 }
 
-.nav_link{
+.nav_link {
 	color: inherit;
 	font-weight: 500;
-    font-size: 30px;
+	font-size: 30px;
 	text-decoration: none;
 	transition: color 150ms;
 	cursor: pointer;
+
 	&.active {
 		color: #1ad5cc;
 	}
 
 	&:hover,
 	&:focus {
-		color:  #1ad5cc;
+		color: #1ad5cc;
 	}
 }

@@ -1,0 +1,21 @@
+.cast_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.cast_item {
+    
+   
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; 
+    margin-bottom: 30px;
+    width: 250px;
+    text-align: center; 
+}
+.cast_name {
+    width: 100%; 
+    word-wrap: break-word;
+margin-bottom: 10px;
+}
