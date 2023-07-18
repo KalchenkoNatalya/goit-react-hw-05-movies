@@ -1,18 +1,12 @@
 import { Suspense, lazy } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
-import styled from 'styled-components';
 import css from './App.module.css';
 import Loader from '../Loader/Loader';
 const Home = lazy(() => import('pages/Home'));
 const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'));
 const Search = lazy(() => import('pages/Search'));
 
-// const StyledLink = styled(NavLink)`
-//   color: black;
-//   &.active {
-//     color: orange;
-//   }
-// `;
+
 
 const App = () => {
   return (
