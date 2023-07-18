@@ -14,30 +14,20 @@ const Home = () => {
         const responceTrending = await api.fetchTrendingMovies();
         setTrendingArray(responceTrending);
         // console.log(trendingMovies)
-        console.log(responceTrending);
+        // console.log(responceTrending);
       } catch (newError) {
         setError(newError);
       }
     };
     fetchTrending();
   }, []);
-  const onClick = movieId => {
-    const fetchOneMovie = async () => {
-      try {
-        const api = new Api();
-        const responceDetails = await api.movieDetails(movieId);
-        console.log(responceDetails);
-      } catch (error) {}
-    };
-    fetchOneMovie();
-    
-  };
+
   return (
     <div>
       {error ? (
         <p>{error.message}</p>
       ) : (
-        <MoviesList responceOnFetch={trendingArray} onClick={onClick} />
+        <MoviesList responceOnFetch={trendingArray} />
       )}
     </div>
   );

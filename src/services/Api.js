@@ -1,11 +1,10 @@
 import axios from 'axios';
 
 class Api {
-  #API_KEY = '57ca3cbf384960d64107a3c5d70155b8';
-  // #TRENDING_URL = 'https://api.themoviedb.org/3/trending/all/week';
-  #TRENDING_URL = 'https://api.themoviedb.org/3/trending/movie/day';
-  // #MOVIE_DETAILS='https://api.themoviedb.org/3/movie/movie_id'
+  // #TRENDING_URL = 'https://api.themoviedb.org/3/trending/all/week'; //всі
+  #TRENDING_URL = 'https://api.themoviedb.org/3/trending/movie/day'; //тільки фільми
   #MOVIE_DETAILS = 'https://api.themoviedb.org/3/movie/';
+  #SEARCHQUERY = 'https://api.themoviedb.org/3/search/movie';
 
   options = {
     method: 'GET',
@@ -17,15 +16,13 @@ class Api {
   };
 
   async fetchTrendingMovies() {
-    const { data } = await axios.get(
-      `${this.#TRENDING_URL}?page=1&api_key=${this.#API_KEY}`
-    );
+    const { data } = await axios.get(`${this.#TRENDING_URL}`, this.options);
     return data.results;
   }
 
   async movieDetails(movieId) {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}`,
+      `${this.#MOVIE_DETAILS}+${movieId}`,
       this.options
     );
     return data;
@@ -33,22 +30,26 @@ class Api {
 
   async fetchCast(movieId) {
     const responceCast = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}/credits`,
+      `${this.#MOVIE_DETAILS}+${movieId}/credits`,
       this.options
     );
     return responceCast.data.cast;
   }
 
   async fetchReviews(movieId) {
-    const responceReviews = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/reviews`, this.options);
-
+    const responceReviews = await axios.get(
+      `${this.#MOVIE_DETAILS}+${movieId}/reviews`,
+      this.options
+    );
     return responceReviews.data.results;
-   
   }
 
   async fetchOnSearchParams(searchQuery) {
-    const responsSearchQuery = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${searchQuery}`, this.options);
-      // console.log(responsSearchQuery.data.results)
+    const responsSearchQuery = await axios.get(
+      `${this.#SEARCHQUERY}?query=${searchQuery}`,
+      this.options
+    );
+    // console.log(responsSearchQuery.data.results)
     return responsSearchQuery.data.results;
   }
 }

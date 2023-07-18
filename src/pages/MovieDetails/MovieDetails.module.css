@@ -1,0 +1,25 @@
+.container_movieDetails {
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+
+}
+
+.button_back {
+    margin-bottom: 20px;
+    display: block;
+    width: 100px;
+    height: 20px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #a8f3ef;
+    color: inherit;
+     font-size: inherit; 
+}
+
+.poster_movie{
+    border-radius: 10px;
+}

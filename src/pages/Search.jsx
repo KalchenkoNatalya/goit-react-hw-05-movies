@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Api from 'services/Api';
 
-
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchTerms = searchParams.get('query');
@@ -22,7 +21,7 @@ const Search = () => {
         setIsLoading(true);
         const api = new Api();
         const responceFetchQuery = await api.fetchOnSearchParams(searchTerms);
-        console.log(responceFetchQuery);
+        // console.log(responceFetchQuery);
         if (responceFetchQuery.length === []) {
           alert('There are no movies on youe query');
         }
@@ -47,7 +46,7 @@ const Search = () => {
 
   return (
     <div>
-      <SearchForm handleSubmit={handleSubmit} />
+      <SearchForm handleSubmit={handleSubmit} searchQuery={searchTerms} />
       {error && <p>{error.message}</p>}
       {isLoading && <Loader />}
       {movieDataBySearch?.length !== 0 && (
@@ -60,6 +59,7 @@ const Search = () => {
 export default Search;
 
 
+//варіант без useSearchParams, витягаєм значення інпуту через onChangeInput
 
 // const Search = () => {
 //   const [searchQuery, setSearchQuery] = useState();

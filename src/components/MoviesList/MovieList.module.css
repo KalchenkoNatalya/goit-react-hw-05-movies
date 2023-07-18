@@ -1,0 +1,26 @@
+.movie_list_item {
+    
+    list-style: none;
+}
+
+.movie_list_item:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.movie_list_link {
+    color: inherit;
+    font-weight: 400;
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 150ms;
+    cursor: pointer;
+
+    &.active {
+        color: #1ad5cc;
+    }
+
+    &:hover,
+    &:focus {
+        color: #1ad5cc;
+    }
+}
