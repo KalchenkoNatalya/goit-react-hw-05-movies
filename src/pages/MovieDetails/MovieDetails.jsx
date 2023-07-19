@@ -1,16 +1,8 @@
-import { Suspense, lazy, useEffect, useRef, useState } from 'react';
-import {
-  NavLink,
-  Route,
-  Routes,
-  useLocation,
-  useParams,
-} from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 import Api from 'services/Api';
-import Loader from 'components/Loader/Loader';
 import css from './MovieDetails.module.css';
-const Cast = lazy(() => import('../Cast/Cast'));
-const Reviews = lazy(() => import('../Reviews/Reviews'));
+
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -98,13 +90,7 @@ const MovieDetails = () => {
               </li>
             </ul>
           </div>
-
-          <Suspense fallback={<Loader />}>
-            <Routes>
-              <Route path="cast" element={<Cast />}></Route>
-              <Route path="reviews" element={<Reviews />}></Route>
-            </Routes>
-          </Suspense>
+          <Outlet /> 
         </div>
       )}
     </div>
